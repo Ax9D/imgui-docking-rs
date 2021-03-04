@@ -13,8 +13,9 @@ impl DockNode {
     }
 
     pub fn size(self, size: [f32; 2]) -> Self {
-        unsafe { sys::igDockBuilderSetNodeSize(self.id, sys::ImVec2::from(size)) }
-
+        unsafe { 
+            sys::igDockBuilderSetNodeSize(self.id, sys::ImVec2::from(size)) }
+        
         self
     }
 
