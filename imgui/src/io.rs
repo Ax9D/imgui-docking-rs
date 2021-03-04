@@ -270,8 +270,6 @@ pub struct Io {
     pub(crate) set_clipboard_text_fn:
         Option<unsafe extern "C" fn(user_data: *mut c_void, text: *const c_char)>,
     pub(crate) clipboard_user_data: *mut c_void,
-    ime_set_input_screen_pos_fn: Option<unsafe extern "C" fn(x: c_int, y: c_int)>,
-    ime_window_handle: *mut c_void,
     /// Mouse position, in pixels.
     ///
     /// Set to [f32::MAX, f32::MAX] if mouse is unavailable (on another screen, etc.).
@@ -287,6 +285,10 @@ pub struct Io {
     /// Most users don't have a mouse with a horizontal wheel, and may not be filled by all
     /// backends.
     pub mouse_wheel_h: f32,
+
+    //FIXME: Define a ImGUIID type
+    pub mouse_hovered_viewport: u32,
+
     /// Keyboard modifier pressed: Control
     pub key_ctrl: bool,
     /// Keyboard modifier pressed: Shift
@@ -497,8 +499,6 @@ fn test_io_memory_layout() {
     assert_field_offset!(get_clipboard_text_fn, GetClipboardTextFn);
     assert_field_offset!(set_clipboard_text_fn, SetClipboardTextFn);
     assert_field_offset!(clipboard_user_data, ClipboardUserData);
-    assert_field_offset!(ime_set_input_screen_pos_fn, ImeSetInputScreenPosFn);
-    assert_field_offset!(ime_window_handle, ImeWindowHandle);
     assert_field_offset!(mouse_pos, MousePos);
     assert_field_offset!(mouse_down, MouseDown);
     assert_field_offset!(mouse_wheel, MouseWheel);
