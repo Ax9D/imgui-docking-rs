@@ -243,6 +243,8 @@ pub enum StyleColor {
     TabActive = sys::ImGuiCol_TabActive,
     TabUnfocused = sys::ImGuiCol_TabUnfocused,
     TabUnfocusedActive = sys::ImGuiCol_TabUnfocusedActive,
+    DockingPreview = sys::ImGuiCol_DockingPreview,
+    DockingEmptyBg = sys::ImGuiCol_DockingEmptyBg,
     PlotLines = sys::ImGuiCol_PlotLines,
     PlotLinesHovered = sys::ImGuiCol_PlotLinesHovered,
     PlotHistogram = sys::ImGuiCol_PlotHistogram,
@@ -305,6 +307,8 @@ impl StyleColor {
         StyleColor::TabActive,
         StyleColor::TabUnfocused,
         StyleColor::TabUnfocusedActive,
+        StyleColor::DockingPreview,
+        StyleColor::DockingEmptyBg,
         StyleColor::PlotLines,
         StyleColor::PlotLinesHovered,
         StyleColor::PlotHistogram,
@@ -320,6 +324,7 @@ impl StyleColor {
         StyleColor::NavWindowingHighlight,
         StyleColor::NavWindowingDimBg,
         StyleColor::ModalWindowDimBg,
+        
     ];
     /// Total count of `StyleColor` variants
     pub const COUNT: usize = sys::ImGuiCol_COUNT as usize;
