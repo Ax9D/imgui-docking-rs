@@ -49,6 +49,7 @@ pub use self::widget::tab::*;
 pub use self::widget::tree::*;
 pub use self::window::child_window::*;
 pub use self::window::*;
+pub use self::dock::{Dock,DockNode};
 use internal::RawCast;
 
 #[macro_use]
