@@ -52,6 +52,15 @@ bitflags! {
         ///
         /// Not used by core imgui-rs.
         const IS_TOUCH_SCREEN = sys::ImGuiConfigFlags_IsTouchScreen;
+
+        /// [BETA] Enable docking of windows
+        const DOCKING_ENABLE = sys::ImGuiConfigFlags_DockingEnable;
+        /// [BETA] Enable support for viewports
+        ///
+        /// When using viewports it is recommended that your default value for ImGuiCol_WindowBg
+        /// is opaque (Alpha=1.0) so transition to a viewport won't be noticeable.
+        const VIEWPORTS_ENABLE = sys::ImGuiConfigFlags_ViewportsEnable;
+        
     }
 }
 
@@ -173,6 +182,41 @@ pub struct Io {
     /// For retina display or other situations where window coordinates are different from
     /// framebuffer coordinates
     pub display_framebuffer_scale: [f32; 2],
+
+    pub docking_no_split: bool,
+
+    /// Enable docking with holding Shift key (reduce visual noise, allows dropping in wider space)
+    pub docking_with_shift: bool,
+
+    /// [BETA] [FIXME: This currently creates regression with auto-sizing and general overhead]
+    /// Make every single floating window display within a docking node.
+    pub docking_always_tabbar: bool,
+
+    /// [BETA] Make window or viewport transparent when docking and only display docking boxes on
+    /// the target viewport. Useful if rendering of multiple viewport cannot be synced. Best
+    /// used with viewports auto merging.
+    pub docking_transparent_payload: bool,
+
+    /// Set to make all floating imgui windows always create their own viewport. Otherwise,
+    /// they are merged into the main host viewports when overlapping it. May also set
+    /// ImGuiViewportFlags_NoAutoMerge on individual viewport.
+    pub viewports_no_auto_merge: bool,
+
+    /// Disable default OS task bar icon flag for secondary viewports. When a viewport
+    /// doesn't want a task bar icon, ImGuiViewportFlags_NoTaskBarIcon will be set on it.
+    pub viewports_no_taskbar_icon: bool,
+
+    /// [BETA] Disable default OS window decoration flag for secondary viewports. When a viewport
+    /// doesn't want window decorations, ImGuiViewportFlags_NoDecoration will be set on it.
+    /// Enabling decoration can create subsequent issues at OS levels (e.g. minimum window size).
+    pub viewports_no_decoration: bool,
+
+    /// Disable default OS parenting to main viewport for secondary viewports. By default,
+    /// viewports are marked with ParentViewportId = <main_viewport>, expecting the platform
+    /// back-end to setup a parent/child relationship between the OS windows (some back-end
+    /// may ignore this). Set to true if you want the default to be 0, then all viewports
+    /// will be top-level OS windows.
+    pub viewports_no_default_parent: bool,
 
     /// Request imgui-rs to draw a mouse cursor for you
     pub mouse_draw_cursor: bool,
@@ -419,6 +463,10 @@ fn test_io_memory_layout() {
     assert_field_offset!(font_allow_user_scaling, FontAllowUserScaling);
     assert_field_offset!(font_default, FontDefault);
     assert_field_offset!(display_framebuffer_scale, DisplayFramebufferScale);
+    assert_field_offset!(docking_no_split, ConfigDockingNoSplit);
+    assert_field_offset!(docking_with_shift, ConfigDockingWithShift);
+    assert_field_offset!(docking_always_tabbar, ConfigDockingAlwaysTabBar);
+    assert_field_offset!(docking_transparent_payload, ConfigDockingTransparentPayload);
     assert_field_offset!(mouse_draw_cursor, MouseDrawCursor);
     assert_field_offset!(config_mac_os_behaviors, ConfigMacOSXBehaviors);
     assert_field_offset!(config_input_text_cursor_blink, ConfigInputTextCursorBlink);

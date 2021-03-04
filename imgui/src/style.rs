@@ -324,7 +324,6 @@ impl StyleColor {
         StyleColor::NavWindowingHighlight,
         StyleColor::NavWindowingDimBg,
         StyleColor::ModalWindowDimBg,
-        
     ];
     /// Total count of `StyleColor` variants
     pub const COUNT: usize = sys::ImGuiCol_COUNT as usize;
