@@ -44,23 +44,34 @@ bitflags! {
         /// `set_mouse_cursor` to change the mouse cursor. You may want to honor requests from
         /// imgui-rs by reading `get_mouse_cursor` yourself instead.
         const NO_MOUSE_CURSOR_CHANGE = sys::ImGuiConfigFlags_NoMouseCursorChange;
-        /// Application is SRGB-aware.
-        ///
-        /// Not used by core imgui-rs.
-        const IS_SRGB = sys::ImGuiConfigFlags_IsSRGB;
-        /// Application is using a touch screen instead of a mouse.
-        ///
-        /// Not used by core imgui-rs.
-        const IS_TOUCH_SCREEN = sys::ImGuiConfigFlags_IsTouchScreen;
 
-        /// [BETA] Enable docking of windows
-        const DOCKING_ENABLE = sys::ImGuiConfigFlags_DockingEnable;
-        /// [BETA] Enable support for viewports
-        ///
-        /// When using viewports it is recommended that your default value for ImGuiCol_WindowBg
-        /// is opaque (Alpha=1.0) so transition to a viewport won't be noticeable.
-        const VIEWPORTS_ENABLE = sys::ImGuiConfigFlags_ViewportsEnable;
-        
+                /// [BETA] Enable docking of windows
+                const DOCKING_ENABLE = sys::ImGuiConfigFlags_DockingEnable;
+                /// [BETA] Enable support for viewports
+                ///
+                /// When using viewports it is recommended that your default value for ImGuiCol_WindowBg
+                /// is opaque (Alpha=1.0) so transition to a viewport won't be noticeable.
+                const VIEWPORTS_ENABLE = sys::ImGuiConfigFlags_ViewportsEnable;
+                /// [BETA Don't use] FIXME-DPI: Reposition and resize imgui windows when the DpiScale
+                /// of a viewport changed (mostly useful for the main viewport hosting other window).
+                ///
+                /// Note that resizing the main window itself is up to your application.
+                const DPI_ENABLE_SCALE_VIEWPORTS = sys::ImGuiConfigFlags_DpiEnableScaleViewports;
+                /// [BETA: Don't use] FIXME-DPI: Request bitmap-scaled fonts to match DpiScale.
+                ///
+                /// This is a very low-quality workaround. The correct way to handle DPI is _currently_
+                /// to replace the atlas and/or fonts in the Platform_OnChangedViewport callback, but
+                /// this is all early work in progress.
+                const DPI_ENABLE_SCALE_FONTS = sys::ImGuiConfigFlags_DpiEnableScaleFonts;
+
+                /// Application is SRGB-aware.
+                ///
+                /// Not used by core imgui-rs.
+                const IS_SRGB = sys::ImGuiConfigFlags_IsSRGB;
+                /// Application is using a touch screen instead of a mouse.
+                ///
+                /// Not used by core imgui-rs.
+                const IS_TOUCH_SCREEN = sys::ImGuiConfigFlags_IsTouchScreen;
     }
 }
 

@@ -11,6 +11,7 @@ use std::thread;
 pub use self::clipboard::*;
 pub use self::color::ImColor32;
 pub use self::context::*;
+pub use self::dock::{Dock, DockNode};
 pub use self::drag_drop::{DragDropFlags, DragDropSource, DragDropTarget};
 pub use self::draw_list::{ChannelsSplit, DrawListMut};
 pub use self::fonts::atlas::*;
@@ -49,7 +50,6 @@ pub use self::widget::tab::*;
 pub use self::widget::tree::*;
 pub use self::window::child_window::*;
 pub use self::window::*;
-pub use self::dock::{Dock,DockNode};
 use internal::RawCast;
 
 #[macro_use]
